@@ -79,11 +79,10 @@ export const TablePage = () => {
           </Table>
 
           <Pagination>
-            <Pagination.First onClick={firstPageHandler} />
-            <Pagination.Prev onClick={prevPageHandler} />
+            <Pagination.Prev onClick={prevPageHandler} disabled={page === 1} />
             {
               (page > 3) && (<>
-                <Pagination.Item disabled>{1}</Pagination.Item>
+                <Pagination.Item onClick={firstPageHandler}>{1}</Pagination.Item>
                 <Pagination.Ellipsis disabled />
               </>)
             }
@@ -98,13 +97,18 @@ export const TablePage = () => {
             }
 
             {
-              (page < totalPages - 2) && (<>
+              (page < totalPages - 1) && (<>
                 <Pagination.Ellipsis disabled />
-                <Pagination.Item disabled>{totalPages}</Pagination.Item>
+                <Pagination.Item
+                  onClick={lastPageHandler}
+                >
+                  {totalPages}
+                </Pagination.Item>
               </>)
             }
-            <Pagination.Next onClick={nextPageHandler} />
-            <Pagination.Last onClick={lastPageHandler} />
+            <Pagination.Next
+              onClick={nextPageHandler}
+              disabled={page === totalPages} />
           </Pagination>
         </div>
       )

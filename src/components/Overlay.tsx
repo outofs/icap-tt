@@ -1,4 +1,4 @@
-import { ReactNode } from "react"
+import { ReactNode } from 'react';
 
 type Props = {
   children?: ReactNode;
@@ -14,7 +14,7 @@ export const Overlay: React.FC<Props> = ({ children }) => {
       bottom: 0,
       display:"flex",
       background:"rgba(0, 0, 0, 0.5)",
-      zIndex:"1"
+      zIndex: "3"
     }}>
     {children}
   </div>

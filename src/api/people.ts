@@ -2,14 +2,10 @@ import { Person } from '../types/Person';
 import { Response } from '../types/Response';
 import { client } from '../utils/fetchClient';
 
-export const getPeople = (page: number, limit:number) => {
+export const getPeople = (page: number, limit: number) => {
   return client.get<Response>(`/table/?limit=${limit}&offset=${limit * page}`);
 };
 
-export const createPerson = (data: Omit<Person, 'id'>) => {
-  return client.post<Person>('/table/', data);
-};
-
-export const deletePerson = (personId: number) => {
-  return client.delete(`/table/${personId}/`);
+export const patchPerson = ({ id, name, email, address, birthday_date, phone_number }: Person) => {
+  return client.put<Person>(`/table/${id}/`, { name, email, address, birthday_date, phone_number });
 };

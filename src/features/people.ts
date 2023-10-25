@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { Person } from '../types/Person';
-import { getPeople } from '../api/people';
+import { getPeople, patchPerson } from '../api/people';
 
 type PeopleState = {
   people: Person[];
@@ -16,19 +16,18 @@ const initialState: PeopleState = {
   error: '',
 };
 
-export const init = createAsyncThunk('people/fetch', (options:{page: number, limit: number}) => {
+export const init = createAsyncThunk('people/fetch', (options: { page: number, limit: number }) => {
   return getPeople(options.page, options.limit);
 });
+
+export const updatePerson = createAsyncThunk('people/update', (updatedPerson: Person) => {
+  return patchPerson(updatedPerson);
+})
 
 const peopleSlice = createSlice({
   name: 'people',
   initialState,
-  reducers: {
-    // remove: (state, action: PayloadAction<number>) => {
-    //   state.comments = state.comments
-    //     .filter(comment => comment.id !== action.payload);
-    // },
-  },
+  reducers: {},
 
   extraReducers: (builder) => {
     builder
@@ -47,11 +46,16 @@ const peopleSlice = createSlice({
       state.error = 'Error!';
     });
 
-    // builder.addCase(addComment.fulfilled, (state, action) => {
-    //   state.comments = [...state.comments, action.payload];
-    // });
+    builder.addCase(updatePerson.fulfilled, (state, action) => {
+      state.people.map(person => {
+        if (person.id === action.payload.id) {
+          return action.payload;
+        }
+
+        return person;
+      });
+    });
   },
 });
 
-export const { } = peopleSlice.actions;
 export default peopleSlice.reducer;

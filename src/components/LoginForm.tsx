@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Modal, Button, Form, FormGroup } from "react-bootstrap";
+import { Modal, Button, Form, FormGroup } from 'react-bootstrap';
 import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { init } from '../features/login';
 import { useNavigate } from 'react-router-dom';
@@ -41,9 +41,9 @@ export const LoginForm = () => {
         case 401:
           setError('Username or/and Password is/are incorrect!');
           break;
-          case 500:
-            setError('Something went wrong... Please, try later.');
-            break;
+        case 500:
+          setError('Something went wrong... Please, try later.');
+          break;
         default:
           break;
       }
@@ -91,7 +91,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <div className="d-block m-auto p-3 w-50">
+    <div className="d-block m-auto p-3 w-50 border rounded my-5">
       <Modal.Dialog>
         <Modal.Header>
           <Modal.Title className="text-center">
@@ -151,5 +151,5 @@ export const LoginForm = () => {
         </Form.Text>
       </Modal.Dialog>
     </div>
-  )
-}
+  );
+};
