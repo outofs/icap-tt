@@ -18,8 +18,8 @@ export const LoginForm = () => {
   console.log(status, isLoading);
 
 
-  const [username, setUsername] = useState<string>('testuser');
-  const [password, setPassword] = useState<string>('testpassword123');
+  const [username, setUsername] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<string>('');
 
   const [formErrors, setFormErrors] = useState<FormErrors>({
