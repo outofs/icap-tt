@@ -14,7 +14,7 @@ const initialState: LoginState = {
   error: '',
 };
 
-export const init = createAsyncThunk('posts/fetch', (loginData: LoginData) => {
+export const init = createAsyncThunk('login/fetch', (loginData: LoginData) => {
   return login(loginData);
 });
 

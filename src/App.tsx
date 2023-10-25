@@ -5,11 +5,13 @@ import { Overlay } from './components/Overlay';
 import { Outlet } from 'react-router-dom';
 
 function App() {
-  const { isLoading } = useAppSelector(state => state.login);
+  const { isLoading: loginLoading } = useAppSelector(state => state.login);
+  const {isLoading: peopleLoading} = useAppSelector(state=>state.people);
+
   return (
     <div className="App">
       {
-        isLoading && <Overlay><Loader /></Overlay>
+        (loginLoading || peopleLoading) && <Overlay><Loader /></Overlay>
       }
       <div className="container-md">
         <Outlet />

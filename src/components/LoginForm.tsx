@@ -35,12 +35,15 @@ export const LoginForm = () => {
           setError('');
           navigate('/table');
           break;
-        case 401:
-          setError('Username or/and Password is/are incorrect!');
-          break;
         case 400:
           setError('Please, fill all required fields!');
           break;
+        case 401:
+          setError('Username or/and Password is/are incorrect!');
+          break;
+          case 500:
+            setError('Something went wrong... Please, try later.');
+            break;
         default:
           break;
       }
