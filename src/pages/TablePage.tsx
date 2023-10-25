@@ -1,11 +1,15 @@
-import { useEffect, useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../app/hooks'
+import { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { init } from '../features/people';
 import { Button, ButtonGroup, Pagination, Table } from 'react-bootstrap';
 import { TableRow } from '../components/TableRow';
+import { cleanStatus } from '../features/login';
+import { useNavigate } from 'react-router-dom';
 
 export const TablePage = () => {
   const disatch = useAppDispatch();
+  const navigate = useNavigate();
+
   const { people, totalCount, isLoading } = useAppSelector(state => state.people);
 
   const limitPerPage: number[] = [10, 15, 20, 30];
@@ -35,26 +39,40 @@ export const TablePage = () => {
   const firstPageHandler = () => setPage(1);
   const lastPageHandler = () => setPage(totalPages);
 
+  const logout = () => {
+    disatch(cleanStatus());
+    navigate('/');
+  }
+
 
   useEffect(() => {
     disatch(init({ page: page - 1, limit }));
   }, [page, limit]);
 
   return <div className="my-5 d-flex flex-column align-items-center">
-    <ButtonGroup className="mb-3">
-      {
-        limitPerPage.map(value => (
-          <Button
-            variant="secondary"
-            onClick={() => setLimit(value)}
-            active={value === limit}
-            key={value}
-          >
-            {value}
-          </Button>
-        ))
-      }
-    </ButtonGroup>
+    <div className="d-flex justify-content-between align-items-center w-100">
+      <div>
+        <div>Table size</div>
+
+        <ButtonGroup className="mb-3">
+          {
+            limitPerPage.map(value => (
+              <Button
+                variant="secondary"
+                onClick={() => setLimit(value)}
+                active={value === limit}
+                key={value}
+              >
+                {value}
+              </Button>
+            ))
+          }
+        </ButtonGroup>
+      </div>
+
+      <Button onClick={logout}>Logout</Button>
+    </div>
+
     {
       !isLoading && (
         <div className="d-flex flex-column justify-content-center align-items-center w-100">
@@ -113,5 +131,5 @@ export const TablePage = () => {
         </div>
       )
     }
-  </div>
-}
+  </div>;
+};

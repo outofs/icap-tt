@@ -1,4 +1,4 @@
-import { Routes, Route, BrowserRouter } from "react-router-dom";
+import { Routes, Route, HashRouter } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import App from "./App";
@@ -8,7 +8,7 @@ import { TablePage } from './pages/TablePage';
 
 export const Root = () => {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <Provider store={store}>
         <Routes>
           <Route path="/" element={<App />}>
@@ -18,6 +18,6 @@ export const Root = () => {
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </Provider>
-    </BrowserRouter>
+    </HashRouter>
   )
 }
