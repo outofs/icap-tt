@@ -18,7 +18,7 @@ export const ModalForm = () => {
   const { person } = useAppSelector(state => state.selectedPerson);
   const dispatch = useAppDispatch();
 
-  const preparedDate = () => {
+  const preparedDateFormat = () => {
     const dateArr = person?.birthday_date.split('-') || '';
     const century = (new Date().getFullYear() - 2000) < Number(dateArr[2]) ? 19 : 20;
     return `${century}${dateArr[2]}-${dateArr[1]}-${dateArr[0]}`;
@@ -26,7 +26,7 @@ export const ModalForm = () => {
 
   const [name, setName] = useState(person?.name || '');
   const [email, setEmail] = useState(person?.email || '');
-  const [date, setDate] = useState(preparedDate());
+  const [date, setDate] = useState(preparedDateFormat());
   const [phone, setPhone] = useState(person?.phone_number || '');
   const [address, setAddress] = useState(person?.address || '');
 
@@ -37,13 +37,6 @@ export const ModalForm = () => {
     isPhoneError: false,
     isAddressError: false,
   });
-
-  // useEffect(() => {
-  //   console.log(date);
-
-  // }, [date]);
-
-
 
   const closeModalHandler = () => dispatch(unselectPerson());
 

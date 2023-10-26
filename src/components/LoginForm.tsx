@@ -28,7 +28,6 @@ export const LoginForm = () => {
     if (status) {
       switch (status) {
         case 200:
-          console.log('Nice!');
           setError('');
           navigate('/table');
           break;
