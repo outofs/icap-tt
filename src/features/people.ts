@@ -7,7 +7,7 @@ type PeopleState = {
   totalCount: number;
   isLoading: boolean;
   error: string;
-}
+};
 
 const initialState: PeopleState = {
   people: [],
@@ -16,13 +16,13 @@ const initialState: PeopleState = {
   error: '',
 };
 
-export const init = createAsyncThunk('people/fetch', (options: { page: number, limit: number }) => {
+export const init = createAsyncThunk('people/fetch', (options: { page: number, limit: number; }) => {
   return getPeople(options.page, options.limit);
 });
 
 export const updatePerson = createAsyncThunk('people/update', (updatedPerson: Person) => {
   return patchPerson(updatedPerson);
-})
+});
 
 const peopleSlice = createSlice({
   name: 'people',
@@ -47,7 +47,7 @@ const peopleSlice = createSlice({
     });
 
     builder.addCase(updatePerson.fulfilled, (state, action) => {
-      state.people.map(person => {
+      state.people = state.people.map(person => {
         if (person.id === action.payload.id) {
           return action.payload;
         }

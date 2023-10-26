@@ -11,12 +11,9 @@ interface FormErrors {
 
 export const LoginForm = () => {
   const dispatch = useAppDispatch();
-  const { status, isLoading } = useAppSelector(state => state.login);
+  const { status } = useAppSelector(state => state.login);
 
   const navigate = useNavigate();
-
-  console.log(status, isLoading);
-
 
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
