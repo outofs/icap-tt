@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "/icap-tt/static/css/main.a3171b36.css",
-    "main.js": "/icap-tt/static/js/main.b5274d00.js",
+    "main.js": "/icap-tt/static/js/main.c49f43cf.js",
     "index.html": "/icap-tt/index.html",
     "main.a3171b36.css.map": "/icap-tt/static/css/main.a3171b36.css.map",
-    "main.b5274d00.js.map": "/icap-tt/static/js/main.b5274d00.js.map"
+    "main.c49f43cf.js.map": "/icap-tt/static/js/main.c49f43cf.js.map"
   },
   "entrypoints": [
     "static/css/main.a3171b36.css",
-    "static/js/main.b5274d00.js"
+    "static/js/main.c49f43cf.js"
   ]
 }
