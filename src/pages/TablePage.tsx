@@ -5,6 +5,7 @@ import { Button, ButtonGroup, Pagination, Table } from 'react-bootstrap';
 import { TableRow } from '../components/TableRow';
 import { cleanStatus } from '../features/login';
 import { useNavigate } from 'react-router-dom';
+import { AboutMe } from '../components/AboutMe';
 
 export const TablePage = () => {
   const disatch = useAppDispatch();
@@ -131,5 +132,7 @@ export const TablePage = () => {
         </div>
       )
     }
+
+    <AboutMe />
   </div>;
 };
